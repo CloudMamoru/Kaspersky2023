@@ -1,7 +1,8 @@
 import style from './Employees.module.css';
+import Table from './TypeOfDataOutput/Table/Table';
 
 const Employees = (props) => {
-  return <div>{props.employees.map((e) => e.id)}</div>;
+  return <Table employees={props.employees} />;
 };
 
 export default Employees;

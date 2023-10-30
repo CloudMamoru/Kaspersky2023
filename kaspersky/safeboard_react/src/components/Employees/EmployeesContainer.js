@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   getEmployees,
   getPageSize,
@@ -10,19 +10,16 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { requestEmployees, setCurrentPage } from '../../redux/employees-reducer';
 
-class EmployeesContainer extends React.Component {
-  componentDidMount() {
-    let { currentPage, pageSize } = this.props;
-    this.props.requestEmployees(currentPage, pageSize);
-  }
-  render() {
-    return (
-      <div>
-        <Employees employees={this.props.employees} />
-      </div>
-    );
-  }
-}
+const EmployeesContainer = (props) => {
+  useEffect(() => {
+    props.requestEmployees(props.currentPage, props.pageSize);
+  });
+  return (
+    <div>
+      <Employees employees={props.employees} />
+    </div>
+  );
+};
 
 let mapStateToProps = (state) => {
   return {
