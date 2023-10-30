@@ -21,14 +21,14 @@ export const requestEmployees = (page, pageSize) => async (dispatch) => {
   dispatch(setCurrentPage(page));
 
   let data = await employeesAPI.getEmployees(page, pageSize);
-  dispatch(setEmployees(data));
-  dispatch(setTotalEmployeesCount(data.totalCount));
+  dispatch(setEmployees(data.results));
+  dispatch(setTotalEmployeesCount(data.count));
 };
 
 // Reducer:
 let initialState = {
   employees: [],
-  pageSize: 5,
+  pageSize: 20,
   totalEmployeesCount: 0,
   currentPage: 1,
 };
