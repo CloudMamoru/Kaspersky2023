@@ -21,7 +21,7 @@ export const requestEmployees = (page, pageSize) => async (dispatch) => {
   dispatch(setCurrentPage(page));
 
   let data = await employeesAPI.getEmployees(page, pageSize);
-  dispatch(setEmployees(data.items));
+  dispatch(setEmployees(data));
   dispatch(setTotalEmployeesCount(data.totalCount));
 };
 

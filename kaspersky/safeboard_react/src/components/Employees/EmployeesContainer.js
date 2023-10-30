@@ -18,7 +18,7 @@ class EmployeesContainer extends React.Component {
   render() {
     return (
       <div>
-        <Employees />
+        <Employees employees={this.props.employees} />
       </div>
     );
   }
