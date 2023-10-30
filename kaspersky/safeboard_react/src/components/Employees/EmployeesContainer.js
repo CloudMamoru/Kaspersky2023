@@ -13,10 +13,23 @@ import { requestEmployees, setCurrentPage } from '../../redux/employees-reducer'
 const EmployeesContainer = (props) => {
   useEffect(() => {
     props.requestEmployees(props.currentPage, props.pageSize);
-  });
+  }, []);
+
+  const onPageChanged = (pageNumber) => {
+    let { pageSize } = props;
+    props.requestEmployees(pageNumber, pageSize);
+  };
+
   return (
     <div>
-      <Employees employees={props.employees} />
+      <Employees
+        totalEmployeesCount={props.totalEmployeesCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        employees={props.employees}
+        onPageChanged={onPageChanged}
+        setCurrentPage={props.setCurrentPage}
+      />
     </div>
   );
 };
