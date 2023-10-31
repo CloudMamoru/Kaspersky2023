@@ -12,6 +12,8 @@ source env/bin/activate
 
 pip install -r requirements.txt
 
+### 4) Переходим в Django проект
+
 ### 4) Выполняем миграции
 
 python3 manage.py migrate
