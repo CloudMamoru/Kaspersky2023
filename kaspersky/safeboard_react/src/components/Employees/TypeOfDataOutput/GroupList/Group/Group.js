@@ -12,6 +12,9 @@ const Group = (props) => {
         <b> Email:</b> {props.employee.email},
       </span>
       <span>
+        <b> Group:</b> {props.employee.group},
+      </span>
+      <span>
         <b> Phone Number:</b> {props.employee.phone_number},
       </span>
     </div>
