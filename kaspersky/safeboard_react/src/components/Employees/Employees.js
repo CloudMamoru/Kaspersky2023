@@ -10,7 +10,7 @@ import cells from '../../assets/icons/cells.png';
 import card from '../../assets/icons/card.png';
 import group from '../../assets/icons/group.png';
 import CardsList from './TypeOfDataOutput/CardsList/CardsList';
-import Group from './TypeOfDataOutput/Group/Group';
+import GroupList from './TypeOfDataOutput/GroupList/GroupList';
 
 const Employees = ({ pageSize, employees }) => {
   const [currentEmployees, setCurrentEmployees] = useState([...employees]); // Список текущих работников
@@ -146,7 +146,7 @@ const Employees = ({ pageSize, employees }) => {
           <div className='column'>
             <SortDrowDown getSortField={getSortField} />
             <button className='button is-small' onClick={sortData}>
-              <span>Сортировать</span>
+              <span>Sort</span>
               {<Arrow />}
             </button>
           </div>
@@ -160,13 +160,24 @@ const Employees = ({ pageSize, employees }) => {
 
       <br />
       {typeOfDataOutput === 'table' && <Table employees={employeesOnCurrentPage} />}
+      {typeOfDataOutput === 'table' && (
+        <Paginator
+          pageSize={pageSize}
+          totalEmployeesCount={totalCurrentEmployees}
+          paginate={paginate}
+        />
+      )}
+
       {typeOfDataOutput === 'card' && <CardsList employees={employeesOnCurrentPage} />}
-      {typeOfDataOutput === 'group' && <Group employees={employeesOnCurrentPage} />}
-      <Paginator
-        pageSize={pageSize}
-        totalEmployeesCount={totalCurrentEmployees}
-        paginate={paginate}
-      />
+      {typeOfDataOutput === 'card' && (
+        <Paginator
+          pageSize={pageSize}
+          totalEmployeesCount={totalCurrentEmployees}
+          paginate={paginate}
+        />
+      )}
+
+      {typeOfDataOutput === 'group' && <GroupList employees={currentEmployees} />}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const SearchString = ({ onSearchSend }) => {
         <input
           className='input is-small'
           type='text'
-          placeholder='Найти работника'
+          placeholder='Find an employee'
           value={searchValue}
           onChange={(event) => {
             setSearchValue(event.target.value);
@@ -19,7 +19,7 @@ const SearchString = ({ onSearchSend }) => {
       </div>
       <div className='control'>
         <a className='button is-small' onClick={() => onSearchSend(searchValue)}>
-          Поиск
+          Search
         </a>
       </div>
     </div>

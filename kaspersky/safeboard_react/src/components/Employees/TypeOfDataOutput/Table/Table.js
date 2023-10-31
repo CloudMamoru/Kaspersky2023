@@ -3,11 +3,11 @@ const Table = (props) => {
     <table className='table is-bordered is-striped is-narrow is-hoverable is-fullwidth'>
       <thead>
         <tr>
-          <th>Полное имя</th>
-          <th>Учетная запись</th>
-          <th>Электронная почта</th>
-          <th>Группа</th>
-          <th>Номер телефона</th>
+          <th>Full name</th>
+          <th>Account</th>
+          <th>Email</th>
+          <th>Group</th>
+          <th>Phone number</th>
         </tr>
       </thead>
       {props.employees.map((employee, id) => (
