@@ -3,9 +3,7 @@ import {
   getEmployees,
   getIsFetching,
   getPageSize,
-  getTotalEmployeesCount,
 } from '../../redux/employees-selectors';
-// import { getCurrentPage } from '../../redux/employees-selectors';
 import Employees from './Employees';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -23,12 +21,7 @@ const EmployeesContainer = (props) => {
       {props.isFetching ? (
         <Preloader />
       ) : (
-        <Employees
-          totalEmployeesCount={props.totalEmployeesCount}
-          pageSize={props.pageSize}
-          // setCurrentPage={props.setCurrentPage}
-          employees={props.employees}
-        />
+        <Employees pageSize={props.pageSize} employees={props.employees} />
       )}
     </div>
   );
@@ -38,14 +31,12 @@ let mapStateToProps = (state) => {
   return {
     employees: getEmployees(state),
     pageSize: getPageSize(state),
-    totalEmployeesCount: getTotalEmployeesCount(state),
     isFetching: getIsFetching(state),
   };
 };
 
 export default compose(
   connect(mapStateToProps, {
-    // setCurrentPage,
     requestEmployees,
   })
 )(EmployeesContainer);
