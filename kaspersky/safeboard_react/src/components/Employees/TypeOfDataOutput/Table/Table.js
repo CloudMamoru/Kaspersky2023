@@ -1,13 +1,15 @@
 const Table = (props) => {
   return (
     <table>
-      <tr>
-        <th>Полное имя</th>
-        <th>Учетная запись</th>
-        <th>Электронная почта</th>
-        <th>Группа</th>
-        <th>Номер телефона</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Полное имя</th>
+          <th>Учетная запись</th>
+          <th>Электронная почта</th>
+          <th>Группа</th>
+          <th>Номер телефона</th>
+        </tr>
+      </thead>
       {props.employees.map((employee, id) => (
         <tbody key={id}>
           <tr>
