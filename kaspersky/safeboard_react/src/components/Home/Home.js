@@ -1,33 +1,21 @@
-import style from './Home.module.css';
-import home_page from '../../assets/images/home_image.png';
+import styles from './Home.module.sass';
+import photo from '../../assets/images/my_photo.jpg';
 
 const Home = (props) => {
   return (
-    <div className={style.home}>
-      <label for='cars'>Сортировка: </label>
-      <select
-        onChange={(e) => {
-          alert(e.target.value);
-        }}
-      >
-        <option value='full_name'>По имени</option>
-        <option value='account'>По логину</option>
-        <option value='email'>По электронной почте</option>
-        <option value='group'>По группе</option>
-        <option value='phone_number'>По телефону</option>
-      </select>
-    </div>
+    <section className={styles.section}>
+      <div className={styles.hero}>
+        <div class={styles.hero__left}>
+          <h1 className={styles.hero__h1}>
+            Hi, I'm <span className={styles.hero__h1_gradient}>Chernakov Aleksandr</span>
+            <br />
+            Frontend Developer 👋🏻
+          </h1>
+        </div>
+        <img className={styles.hero__right} src={photo} alt='my_photo'></img>
+      </div>
+    </section>
   );
 };
 
 export default Home;
-
-// const Home = (props) => {
-//   return (
-//     <div className={style.home}>
-//       <img src={home_page} alt='Home page' />
-//     </div>
-//   );
-// };
-
-// export default Home;

@@ -1,25 +1,25 @@
-import safeboard_logo from '../../assets/images/safeboard.png';
-import style from './Header.module.css';
+import logo from '../../assets/images/logo.png';
+import styles from './Header.module.sass';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
   return (
-    <header className={style.header}>
-      <nav className={style.nav}>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
         <NavLink to='/'>
-          <img src={safeboard_logo} alt='logo' />
+          <img src={logo} alt='logo' />
         </NavLink>
         <NavLink
-          className={({ isActive }) => (isActive ? style.activeLink : undefined)}
+          className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
           to='/'
         >
           Home
         </NavLink>
         <NavLink
-          className={({ isActive }) => (isActive ? style.activeLink : undefined)}
+          className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
           to='/employees'
         >
-          Employees
+          Task
         </NavLink>
       </nav>
     </header>
