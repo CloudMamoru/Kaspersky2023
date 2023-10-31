@@ -64,7 +64,7 @@ ROOT_URLCONF = "safeboard_drf.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR.joinpath('safeboard_react')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
