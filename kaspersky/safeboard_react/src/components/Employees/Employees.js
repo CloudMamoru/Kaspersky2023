@@ -9,6 +9,8 @@ import ArrowDown from '../../assets/icons/ArrowDown';
 import cells from '../../assets/icons/cells.png';
 import card from '../../assets/icons/card.png';
 import group from '../../assets/icons/group.png';
+import CardsList from './TypeOfDataOutput/CardsList/CardsList';
+import Group from './TypeOfDataOutput/Group/Group';
 
 const Employees = ({ pageSize, employees }) => {
   const [currentEmployees, setCurrentEmployees] = useState([...employees]); // Список текущих работников
@@ -93,6 +95,9 @@ const Employees = ({ pageSize, employees }) => {
     setDirectionSort(!directionSort);
   };
 
+  // Режим отображения:
+  const [typeOfDataOutput, setTypeOfDataOutput] = useState('table');
+
   return (
     <div>
       <h1 className={styles.task_h1}>Employees</h1>
@@ -111,17 +116,26 @@ const Employees = ({ pageSize, employees }) => {
 
           {/* Режим отображения */}
           <div className='column'>
-            <button className='button is-small'>
+            <button
+              className='button is-small'
+              onClick={() => setTypeOfDataOutput('table')}
+            >
               <figure class='image is-16x16'>
                 <img src={cells} alt='table' />
               </figure>
             </button>
-            <button className='button is-small'>
+            <button
+              className='button is-small'
+              onClick={() => setTypeOfDataOutput('card')}
+            >
               <figure class='image is-16x16'>
                 <img src={card} alt='card' />
               </figure>
             </button>
-            <button className='button is-small'>
+            <button
+              className='button is-small'
+              onClick={() => setTypeOfDataOutput('group')}
+            >
               <figure class='image is-16x16'>
                 <img src={group} alt='group' />
               </figure>
@@ -145,7 +159,9 @@ const Employees = ({ pageSize, employees }) => {
       </div>
 
       <br />
-      <Table employees={employeesOnCurrentPage} />
+      {typeOfDataOutput === 'table' && <Table employees={employeesOnCurrentPage} />}
+      {typeOfDataOutput === 'card' && <CardsList employees={employeesOnCurrentPage} />}
+      {typeOfDataOutput === 'group' && <Group employees={employeesOnCurrentPage} />}
       <Paginator
         pageSize={pageSize}
         totalEmployeesCount={totalCurrentEmployees}
