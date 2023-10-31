@@ -1,13 +1,12 @@
 const SortDrowDown = (props) => {
   return (
-    <div>
-      <label>Сортировка: </label>
+    <div className='select is-small'>
       <select onChange={props.getSortField}>
-        <option value='full_name'>По имени</option>
-        <option value='account'>По логину</option>
-        <option value='email'>По электронной почте</option>
-        <option value='group'>По группе</option>
-        <option value='phone_number'>По телефону</option>
+        <option value='full_name'>by name</option>
+        <option value='account'>by account</option>
+        <option value='email'>by email</option>
+        <option value='group'>by group</option>
+        <option value='phone_number'>by phone</option>
       </select>
     </div>
   );

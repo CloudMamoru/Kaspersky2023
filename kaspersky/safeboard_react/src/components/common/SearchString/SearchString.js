@@ -8,7 +8,7 @@ const SearchString = ({ onSearchSend }) => {
     <div className='field has-addons'>
       <div className='control'>
         <input
-          className='input'
+          className='input is-small'
           type='text'
           placeholder='Найти работника'
           value={searchValue}
@@ -18,7 +18,7 @@ const SearchString = ({ onSearchSend }) => {
         ></input>
       </div>
       <div className='control'>
-        <a className='button is -info' onClick={() => onSearchSend(searchValue)}>
+        <a className='button is-small' onClick={() => onSearchSend(searchValue)}>
           Поиск
         </a>
       </div>

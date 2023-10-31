@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import Paginator from '../common/Paginator/Paginator';
-import style from './Employees.module.css';
+import styles from './Employees.module.sass';
 import Table from './TypeOfDataOutput/Table/Table';
 import SearchString from '../common/SearchString/SearchString';
 import SortDrowDown from '../common/SortDrowDown/SortDrowDown';
 import ArrowUp from '../../assets/icons/ArrowUp';
 import ArrowDown from '../../assets/icons/ArrowDown';
+import cells from '../../assets/icons/cells.png';
+import card from '../../assets/icons/card.png';
+import group from '../../assets/icons/group.png';
 
 const Employees = ({ pageSize, employees }) => {
   const [currentEmployees, setCurrentEmployees] = useState([...employees]); // Список текущих работников
@@ -92,25 +95,56 @@ const Employees = ({ pageSize, employees }) => {
 
   return (
     <div>
-      <div className='title is-2 has-text-centered'>Работники</div>
-      <div className='title is-2 has-text-centered'>{sortField}</div>
-      <div className='columns'>
-        <div className='column'>
-          <a className='pagination-previous' onClick={prevPage}>
-            Предыдущая страница
-          </a>
-          <a className='pagination-next' onClick={nextPage}>
-            Следующая страница
-          </a>
-        </div>
-        <div className='column'>
-          <SortDrowDown getSortField={getSortField} />
-          <button onClick={sortData}>Отсортировать {<Arrow />}</button>
-        </div>
-        <div className='column'>
-          <SearchString onSearchSend={onSearchSend} />
+      <h1 className={styles.task_h1}>Employees</h1>
+      {/* Активная панель */}
+      <div className={styles.active_panel}>
+        <div className='columns'>
+          {/* Кнопки пагинации */}
+          <div className='column'>
+            <button className='button is-small' onClick={prevPage}>
+              Previous page
+            </button>
+            <button className='button is-small' onClick={nextPage}>
+              Next page
+            </button>
+          </div>
+
+          {/* Режим отображения */}
+          <div className='column'>
+            <button className='button is-small'>
+              <figure class='image is-16x16'>
+                <img src={cells} alt='table' />
+              </figure>
+            </button>
+            <button className='button is-small'>
+              <figure class='image is-16x16'>
+                <img src={card} alt='card' />
+              </figure>
+            </button>
+            <button className='button is-small'>
+              <figure class='image is-16x16'>
+                <img src={group} alt='group' />
+              </figure>
+            </button>
+          </div>
+
+          {/* Сортировка */}
+          <div className='column'>
+            <SortDrowDown getSortField={getSortField} />
+            <button className='button is-small' onClick={sortData}>
+              <span>Сортировать</span>
+              {<Arrow />}
+            </button>
+          </div>
+
+          {/* Поиск */}
+          <div className='column'>
+            <SearchString onSearchSend={onSearchSend} />
+          </div>
         </div>
       </div>
+
+      <br />
       <Table employees={employeesOnCurrentPage} />
       <Paginator
         pageSize={pageSize}

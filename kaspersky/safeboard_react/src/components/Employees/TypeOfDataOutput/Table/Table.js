@@ -1,6 +1,6 @@
 const Table = (props) => {
   return (
-    <table>
+    <table className='table is-bordered is-striped is-narrow is-hoverable is-fullwidth'>
       <thead>
         <tr>
           <th>Полное имя</th>
