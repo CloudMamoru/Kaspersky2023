@@ -1,11 +1,7 @@
 import React from 'react';
 
 const ArrowUp = () => {
-  return (
-    <span class='icon'>
-      <i class='fas fa-arrow-up'></i>
-    </span>
-  );
+  return <span className='icon'>↑</span>;
 };
 
 export default ArrowUp;

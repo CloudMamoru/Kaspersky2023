@@ -18,10 +18,6 @@ export const getTotalEmployeesCount = (state) => {
   return state.employeesPage.totalEmployeesCount;
 };
 
-// export const getCurrentPage = (state) => {
-//   return state.employeesPage.currentPage;
-// };
-
 export const getIsFetching = (state) => {
   return state.employeesPage.isFetching;
 };

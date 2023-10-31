@@ -3,6 +3,9 @@ import Paginator from '../common/Paginator/Paginator';
 import style from './Employees.module.css';
 import Table from './TypeOfDataOutput/Table/Table';
 import SearchString from '../common/SearchString/SearchString';
+import SortDrowDown from '../common/SortDrowDown/SortDrowDown';
+import ArrowUp from '../../assets/icons/ArrowUp';
+import ArrowDown from '../../assets/icons/ArrowDown';
 
 const Employees = ({ pageSize, employees }) => {
   const [currentEmployees, setCurrentEmployees] = useState([...employees]); // Список текущих работников
@@ -12,7 +15,7 @@ const Employees = ({ pageSize, employees }) => {
 
   useEffect(() => {
     setEmployeesOnCurrentPage(changeEmployeesOnCurrentPage());
-  }, [currentPage, currentEmployees]);
+  }, [currentEmployees, currentPage]);
 
   // Пагинация:
   const changeEmployeesOnCurrentPage = () => {
@@ -56,17 +59,53 @@ const Employees = ({ pageSize, employees }) => {
     setEmployeesOnCurrentPage(changeEmployeesOnCurrentPage());
   };
 
+  // Сортировка:
+  const [sortField, setSortField] = useState('full_name'); // Поле сортировки
+  const [directionSort, setDirectionSort] = useState(true); // Направление сортировки
+
+  const Arrow = () => {
+    return directionSort ? <ArrowDown /> : <ArrowUp />;
+  };
+
+  const getSortField = (e) => {
+    setSortField(e.target.value);
+    setDirectionSort(true);
+  };
+
+  const sortData = () => {
+    let sortedData;
+    if (directionSort) {
+      sortedData = currentEmployees.sort(
+        (a, b) => {
+          return a[sortField] > b[sortField] ? 1 : -1;
+        } // Прямая сортировка
+      );
+    } else {
+      sortedData = currentEmployees.reverse((a, b) => {
+        return a[sortField] > b[sortField] ? 1 : -1;
+      }); // Обратная сортировка
+    }
+    setCurrentEmployees(sortedData);
+    setEmployeesOnCurrentPage(changeEmployeesOnCurrentPage());
+    setDirectionSort(!directionSort);
+  };
+
   return (
     <div>
       <div className='title is-2 has-text-centered'>Работники</div>
+      <div className='title is-2 has-text-centered'>{sortField}</div>
       <div className='columns'>
-        <div className='column is-four-fifths'>
+        <div className='column'>
           <a className='pagination-previous' onClick={prevPage}>
             Предыдущая страница
           </a>
           <a className='pagination-next' onClick={nextPage}>
             Следующая страница
           </a>
+        </div>
+        <div className='column'>
+          <SortDrowDown getSortField={getSortField} />
+          <button onClick={sortData}>Отсортировать {<Arrow />}</button>
         </div>
         <div className='column'>
           <SearchString onSearchSend={onSearchSend} />
@@ -83,31 +122,3 @@ const Employees = ({ pageSize, employees }) => {
 };
 
 export default Employees;
-
-// // Сортировка:
-// const [directionSort, setDirectionSort] = useState(true); // Направление сортировки
-
-// const sortData = (field) => {
-//   let sortedData;
-//   if (directionSort) {
-//     sortedData = employees.sort(
-//       (a, b) => {
-//         return a[field] > b[field] ? 1 : -1;
-//       } // Прямая сортировка
-//     );
-//   } else {
-//     sortedData = employees.reverse((a, b) => {
-//       return a[field] > b[field] ? 1 : -1;
-//     });
-//   }
-//   setCurrentEmployees(sortedData);
-//   setDirectionSort(!directionSort);
-// };
-
-// // Пагинация:
-// const changeCurrentEmployees = (currentPage, pageSize, employees) => {
-//   const lastEmployeeIndex = currentPage * pageSize;
-//   const firstEmployeeIndex = lastEmployeeIndex - pageSize;
-//   const data = employees.slice(firstEmployeeIndex, lastEmployeeIndex);
-//   return employees.slice(firstEmployeeIndex, lastEmployeeIndex);
-// };
